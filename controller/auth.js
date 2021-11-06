@@ -16,9 +16,7 @@ const register = async(req,res)=>{
 
     let {firstname , lastname , username , email , password ,gender, profile_pic , dob } = req.body;
 
-  const findUser = await User.findOne({
-    $or : [{username},{email}]
-  })
+  const findUser = await User.findOne({email})
   console.log(findUser)
   if(findUser){
     return setResponse(res,400,"User already registered")
@@ -48,7 +46,7 @@ const login = async(req,res)=>{
     if(!findUser){
       return setResponse(res,400,"user not registered")
     }
-    const checkPassword =   await bcrypt.compareSync(password , findUser.password);
+    const checkPassword =  bcrypt.compareSync(password , findUser.password);
 
     if(!checkPassword){
       return setResponse(res,400,"password incorrect")
