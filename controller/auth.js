@@ -16,7 +16,7 @@ const register = async(req,res)=>{
 
     let {firstname , lastname , username , email , password ,gender, profile_pic , dob } = req.body;
 
-  const findUser = await User.findOne({email})
+  const findUser = await User.find({email})
   if(findUser){
     return setResponse(res,400,"User already registered")
   }
