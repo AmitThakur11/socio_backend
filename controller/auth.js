@@ -37,7 +37,7 @@ const register = async(req,res)=>{
 
 
 const login = async(req,res)=>{
-  const { userIdentity , password } = req.body ; 
+  const { email , password } = req.body ; 
   try{
     const findUser = await User.find({email})
     if(!findUser){
