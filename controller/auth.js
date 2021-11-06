@@ -42,7 +42,7 @@ const register = async(req,res)=>{
 const login = async(req,res)=>{
   const { userIdentity , password } = req.body ; 
   try{
-    const findUser = await User.findOne({
+    const findUser = await User.find({
       $or : [{username : userIdentity},{email : userIdentity}]
     })
     if(!findUser){
