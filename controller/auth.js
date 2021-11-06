@@ -17,7 +17,6 @@ const register = async(req,res)=>{
     let {firstname , lastname , username , email , password ,gender, profile_pic , dob } = req.body;
 
   const findUser = await User.findOne({email})
-  console.log(findUser)
   if(findUser){
     return setResponse(res,400,"User already registered")
   }
@@ -40,9 +39,7 @@ const register = async(req,res)=>{
 const login = async(req,res)=>{
   const { userIdentity , password } = req.body ; 
   try{
-    const findUser = await User.find({
-      $or : [{username : userIdentity},{email : userIdentity}]
-    })
+    const findUser = await User.find({email})
     if(!findUser){
       return setResponse(res,400,"user not registered")
     }
